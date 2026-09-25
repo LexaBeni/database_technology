@@ -1,0 +1,1 @@
+select order_id, customer_name, sales from orders o join customers cu on o.customer_id = cu.customer_id where sales > 500 order by sales desc;
