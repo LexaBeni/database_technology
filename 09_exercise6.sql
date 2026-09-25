@@ -1,0 +1,1 @@
+select customer_name, order_id, sales from customers cu full join orders o on cu.customer_id = o.customer_id;
