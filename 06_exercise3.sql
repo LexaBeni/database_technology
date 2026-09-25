@@ -1,0 +1,1 @@
+select order_id, customer_name, category, sales from orders o inner join customers cu on o.customer_id = cu.customer_id inner join products pr on o.product_id = pr.product_id;
