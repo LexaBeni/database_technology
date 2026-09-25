@@ -1,0 +1,1 @@
+select region, coalesce(sum(sales), 0) as total_sales from orders o right join customers cu on o.customer_id = cu.customer_id group by region;
