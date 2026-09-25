@@ -1,0 +1,1 @@
+select product_name, sales from products pr left join orders o on pr.product_id = o.product_id;
