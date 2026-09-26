@@ -1,0 +1,1 @@
+select region, count(case when sales > 1000 then 1 end) as high_value, count(case when sales <= 1000 then 1 end) as low_value from customers cu join orders o on cu.customer_id = o.customer_id group by region;
