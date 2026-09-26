@@ -1,0 +1,1 @@
+select customer_name, count(order_id) as number_of_orders from customers cu left join orders o on cu.customer_id = o.customer_id group by customer_name;
