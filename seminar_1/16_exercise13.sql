@@ -1,0 +1,1 @@
+select customer_name, sum(sales) as total_sales, avg(discount) as avg_discount, count(*) as number_of_orders, case when sum(sales) > 2500 then 'VIP' else 'REGULAR' end as customer_class from customers cu join orders o on cu.customer_id = o.customer_id group by cu.customer_id, customer_name order by total_sales desc;
