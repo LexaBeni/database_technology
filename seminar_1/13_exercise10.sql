@@ -1,0 +1,1 @@
+select customer_name, sum(sales) as total_sales from customers cu join orders o on cu.customer_id = o.customer_id group by customer_name having sum(sales) > 2000;
