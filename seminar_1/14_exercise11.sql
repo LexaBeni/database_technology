@@ -1,0 +1,1 @@
+select sum(sales) as total_sales, avg(discount) as avg_discount, count(*) as number_of_orders from customers cu join orders o on cu.customer_id = o.customer_id group by region;
