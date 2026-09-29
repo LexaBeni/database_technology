@@ -1,0 +1,1 @@
+select * from flourmills_sales where product_category = (select product_category from flourmills_sales group by product_category order by sum(total_amount) desc limit 1) order by sales_id asc;
