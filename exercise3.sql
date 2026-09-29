@@ -1,0 +1,1 @@
+select product_name, total_amount, (select avg(total_amount) from flourmills_sales) as avg_amount from flourmills_sales;
