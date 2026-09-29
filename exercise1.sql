@@ -1,0 +1,1 @@
+select product_name, total_amount from flourmills_sales where total_amount > (select avg(total_amount) from flourmills_sales);
