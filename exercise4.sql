@@ -1,0 +1,1 @@
+select product_name, total_amount, total_amount/(select sum(total_amount) from flourmills_sales) as amount_share from flourmills_sales;
