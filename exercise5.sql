@@ -1,0 +1,1 @@
+select month_number, monthly_sales from (select sum(total_amount) as monthly_sales, extract(month from sale_date) as month_number from flourmills_sales group by month_number) order by monthly_sales;
