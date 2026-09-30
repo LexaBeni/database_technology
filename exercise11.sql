@@ -1,0 +1,1 @@
+select distinct product_category from flourmills_sales t1 where exists (select 1 from flourmills_sales t2 where t1.product_category = t2.product_category group by t2.product_category having count(distinct region) > 3)
