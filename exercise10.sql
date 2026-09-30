@@ -1,0 +1,1 @@
+select product_category, product_name, total_amount from flourmills_sales t1 where exists (select 1 from flourmills_sales t2 where t1.product_category = t2.product_category and total_amount > 200000)
