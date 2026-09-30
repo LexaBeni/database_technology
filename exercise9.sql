@@ -1,0 +1,1 @@
+select product_name from flourmills_sales t1 where exists (select 1 from flourmills_sales t2  where t1.product_name = t2.product_name group by t2.product_name having count(distinct extract(month from sale_date)) >= 2)
