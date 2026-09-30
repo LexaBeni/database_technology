@@ -1,0 +1,1 @@
+select sales_id, region, sale_date from flourmills_sales t1 where exists (select 1 from flourmills_sales t2 where t1.region = t2.region and extract(year from t2.sale_date) = 2024)
