@@ -1,2 +1,0 @@
-with cte as(select customer_id, product_name, sale_date, total_amount, row_number() over(partition by customer_id order by sale_date desc) as sale_rank from flourmills_sales
-)select customer_id, product_name, sale_date, total_amount from cte where sale_rank = 1 order by customer_id;
