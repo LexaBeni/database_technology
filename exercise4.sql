@@ -1,0 +1,2 @@
+with cte as (select stock_code, invoice_no, invoice_date, unit_price as current_price, lag(unit_price) over(w) as previous_price, unit_price - lag(unit_price) over(w) as price_difference from retail_sales window w as (partition by stock_code order by invoice_date)
+)select * from cte where previous_price is not null and price_difference <> 0 order by invoice_date, invoice_no asc;
