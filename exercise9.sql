@@ -1,0 +1,3 @@
+with cte1 as(select country, date_trunc('month', invoice_date) as month, customer_id, sum(quantity * unit_price) as total_amount from retail_sales group by country, month, customer_id
+), cte2 as(select cte1.*, dense_rank() over(partition by country, month order by total_amount desc) as sales_rank from cte1
+)select cte2.* from cte2 where sales_rank between 1 and 5 order by country, month, sales_rank, customer_id;
