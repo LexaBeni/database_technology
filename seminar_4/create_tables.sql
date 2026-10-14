@@ -10,4 +10,6 @@ create table retail_sales(
     unit_price NUMERIC(10, 2),
     customer_id INTEGER,
     country varchar(100)
-)
+);
+
+select * from retail_sales;
