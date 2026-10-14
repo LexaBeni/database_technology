@@ -1,0 +1,2 @@
+with cte as (select country, date_trunc('month', invoice_date) as month, sum(quantity * unit_price) as total_amount from retail_sales group by country, date_trunc('month', invoice_date)
+) select cte.*, ntile(4) over(partition by country order by total_amount desc) as sales_quartile from cte order by country, month;
