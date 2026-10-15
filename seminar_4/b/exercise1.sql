@@ -1,2 +1,3 @@
+-- Active: 1790175047279@@127.0.0.1@5432@superstore
 with cte as (select customer_name, order_id, order_date, row_number() over(partition by customer_name order by order_date desc) as order_number from customers c join orders o on o.customer_id = c.customer_id
 ) select cte.* from cte where order_number between 1 and 2 order by customer_name, order_number;

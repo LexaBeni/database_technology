@@ -1,0 +1,2 @@
+with cte1 as(select c.region, c.customer_name, sum(o.profit) as total_profit from customers c join orders o on c.customer_id = o.customer_id group by c.region, c.customer_name
+) select cte1.*, rank() over(partition by region order by total_profit desc) as profit_rank, dense_rank() over(partition by region order by total_profit desc) as dense_profit_rank from cte1 order by region, total_profit desc, customer_name;
