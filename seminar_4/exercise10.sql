@@ -1,2 +1,0 @@
-with cte as (select invoice_no, stock_code, description, quantity, unit_price, dense_rank() over (partition by invoice_no order by unit_price desc) as price_rank from retail_sales
-) select * from cte where price_rank between 1 and 5 order by invoice_no, price_rank, stock_code;

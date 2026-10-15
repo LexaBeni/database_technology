@@ -1,2 +1,0 @@
-with cte as(select date_trunc('month', order_date) as month, sum(sales) as monthly_sales from orders group by date_trunc('month', order_date)
-) select cte.*, lag(monthly_sales) over(order by month) as prev_month_sales, monthly_sales - lag(monthly_sales) over(order by month) as sales_change , round((monthly_sales - lag(monthly_sales) over(order by month)) / lag(monthly_sales) over(order by month) * 100, 2) as growth_percentage from cte order by month asc;

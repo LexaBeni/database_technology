@@ -1,2 +1,0 @@
-with cte as(select c.customer_name, sum(o.sales) as total_sales from customers c join orders o on c.customer_id = o.customer_id group by c.customer_id, c.customer_name
-) select cte.*, ntile(4) over(order by total_sales desc) from cte;

@@ -1,2 +1,0 @@
-with cte as(select invoice_no, stock_code, description, quantity, unit_price, (quantity * unit_price) as amount, row_number() over(partition by invoice_no order by quantity * unit_price desc) as row_num from retail_sales
-) select cte.* from cte where row_num between 1 and 3;
