@@ -1,0 +1,2 @@
+with cte as(select date_trunc('month', o.order_date) as month, sum(o.sales) as monthly_sales from orders o group by date_trunc('month', o.order_date)
+)select cte.*, lag(monthly_sales, 1) over(w) as prev_month_sales, lead(monthly_sales, 1) over(w) as next_month_sales from cte window w as(order by month) order by month asc;
