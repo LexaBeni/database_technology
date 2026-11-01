@@ -1,25 +1,35 @@
 USE `movielens`;
 
-CREATE TABLE IF NOT EXISTS `fact_ratings` (
-  `rating_key` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `rating` DECIMAL(2,1) NOT NULL,
-  `time_key` SMALLINT UNSIGNED NOT NULL,
-  `movie_key` INT UNSIGNED NOT NULL,
-  `date_key` INT UNSIGNED NOT NULL,
-  `user_key` INT UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `movielens`.`fact_ratings` (
+  `rating_key` INT NOT NULL,
+  `rating` INT NOT NULL,
+  `time_key` INT NOT NULL,
+  `movie_key` INT NOT NULL,
+  `date_key` INT NOT NULL,
+  `user_key` INT NOT NULL,
   PRIMARY KEY (`rating_key`),
-  KEY `ix_fact_ratings_time_key` (`time_key`),
-  KEY `ix_fact_ratings_movie_key` (`movie_key`),
-  KEY `ix_fact_ratings_date_key` (`date_key`),
-  KEY `ix_fact_ratings_user_key` (`user_key`),
-  CONSTRAINT `ck_fact_ratings_value`
-    CHECK (`rating` BETWEEN 0.5 AND 5.0),
-  CONSTRAINT `fk_fact_ratings_time`
-    FOREIGN KEY (`time_key`) REFERENCES `dim_time` (`time_key`),
-  CONSTRAINT `fk_fact_ratings_movie`
-    FOREIGN KEY (`movie_key`) REFERENCES `dim_movie` (`movie_key`),
-  CONSTRAINT `fk_fact_ratings_date`
-    FOREIGN KEY (`date_key`) REFERENCES `dim_date` (`date_key`),
-  CONSTRAINT `fk_fact_ratings_user`
-    FOREIGN KEY (`user_key`) REFERENCES `dim_user` (`user_key`)
-) ENGINE = InnoDB;
+  INDEX `fk_fact_ratings_dim_time_idx` (`time_key` ASC) VISIBLE,
+  INDEX `fk_fact_ratings_dim_movie1_idx` (`movie_key` ASC) VISIBLE,
+  INDEX `fk_fact_ratings_dim_date1_idx` (`date_key` ASC) VISIBLE,
+  INDEX `fk_fact_ratings_dim_user1_idx` (`user_key` ASC) VISIBLE,
+  CONSTRAINT `fk_fact_ratings_dim_time`
+    FOREIGN KEY (`time_key`)
+    REFERENCES `movielens`.`dim_time` (`time_key`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fact_ratings_dim_movie1`
+    FOREIGN KEY (`movie_key`)
+    REFERENCES `movielens`.`dim_movie` (`movie_key`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fact_ratings_dim_date1`
+    FOREIGN KEY (`date_key`)
+    REFERENCES `movielens`.`dim_date` (`date_key`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fact_ratings_dim_user1`
+    FOREIGN KEY (`user_key`)
+    REFERENCES `movielens`.`dim_user` (`user_key`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
